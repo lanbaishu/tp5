@@ -1,0 +1,78 @@
+{include file='public/header'/}
+{include file='public/frame'/}
+
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+      <div class="row">
+        <form action="{:url('system/update')}" method="post" >
+          <div class="col-md-9">
+            <h1 class="page-header">常规设置</h1>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>站点标题</span></h2>
+              <div class="add-article-box-content">
+                <input type="text" name="sys_name" class="form-control" placeholder="请输入站点标题" value="{$sys.sys_name}">
+              </div>
+            </div>
+
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>站点地址（URL）</span></h2>
+              <div class="add-article-box-content">
+                <input type="text" name="sys_url" class="form-control" placeholder="在此处输入站点地址（URL）" value="{$sys.sys_url}">
+              </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>站点关键字</span></h2>
+              <div class="add-article-box-content">
+                <textarea class="form-control" name="key_words" ></textarea>
+                <span class="prompt-text">关键字会出现在网页的keywords属性中。</span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>站点描述</span></h2>
+              <div class="add-article-box-content">
+                <textarea class="form-control" name="sys_info" rows="4" ></textarea>
+                <span class="prompt-text">描述会出现在网页的description属性中。</span> </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h1 class="page-header">站点</h1>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>电子邮件地址</span></h2>
+              <div class="add-article-box-content">
+                <input type="email" name="sys_email" class="form-control" placeholder="在此处输入邮箱" value="{$sys.sys_email}" />
+                <span class="prompt-text">这个电子邮件地址仅为了管理方便而填写</span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>ICP备案号</span></h2>
+              <div class="add-article-box-content">
+                <input type="text" name="sys_ipc" class="form-control" placeholder="在此处输入备案号" value="{$sys.sys_ipc}" />
+              </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>是否关闭网站</span></h2>
+              <select name="is_close" id="" class="form-control">
+                {eq name='$sys.is_close' value='1'}
+                <option value="1"  selected>关闭网站</option>
+                <option value="0">开启网站</option>
+                {else}
+                <option value="1">关闭网站</option>
+                <option value="0" selected>开启网站</option>
+                {/eq}
+              </select>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>保存</span></h2>
+              <div class="add-article-box-content"> <span class="prompt-text">请确定您对所有选项所做的更改</span> </div>
+              <div class="add-article-box-footer">
+                <button class="btn btn-primary" type="submit" name="submit">保存</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{include file='public/info'/}
+{include file='public/static'/}
+</body>
+</html>

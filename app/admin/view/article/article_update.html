@@ -1,0 +1,117 @@
+{include file='public/header'/}
+{include file='public/frame'}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+  <div class="row">
+    <form action="{:url('article/alter')}" method="post" class="add-article-form">
+      <div class="col-md-9">
+        <h1 class="page-header">修改文章</h1>
+        <div class="form-group">
+          <label for="article-title" class="sr-only">标题</label>
+          <input type="text" id="article-title" name="art_name" class="form-control" placeholder="在此处输入标题" required autofocus autocomplete="off" value="{$data.art_name}">
+        </div>
+        <div class="form-group">
+          <label for="article-content" class="sr-only">内容</label>
+          <script id="article-content" name="text" type="text/plain" >{$data.text}</script>
+        </div>
+
+
+      </div>
+      <div class="col-md-3">
+        <h1 class="page-header">操作</h1>
+        <div class="add-article-box">
+          <h2 class="add-article-box-title"><span>栏目</span></h2>
+          <div class="add-article-box-content">
+            <ul class="category-list">
+              {foreach name='cate' item='v'}
+              <li>
+                <label>
+                  <input name="cate_id" type="radio" value="{$v.cate_id}"
+                         {eq name="$v.cate_id" value="$data.cate_id"}
+                          checked
+                         {else}
+                         {/eq}>
+                  {:str_repeat('-',$v.lev)}{$v.cate_name} <em class="hidden-md">( 栏目ID: <span>{$v.cate_id}</span> )</em></label>
+              </li>
+              {/foreach}
+            </ul>
+            <span class="prompt-text">文章只能添加在最底层栏目中。</span>
+          </div>
+        </div>
+        <div class="add-article-box">
+          <h2 class="add-article-box-title"><span>关键字</span></h2>
+          <div class="add-article-box-content">
+            <input type="text" class="form-control" placeholder="请输入关键字" name="keyword" autocomplete="off" value="{$data.keyword}">
+            <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
+          </div>
+            <div class="add-article-box">
+                <h2 class="add-article-box-title"><span>简介</span></h2>
+                <div class="add-article-box-content">
+                    <input type="text" class="form-control" placeholder="文章描述" name="art_dep" autocomplete="off" value="{$data.art_dep}">
+                    <span class="prompt-text">简单的文章介绍。</span>
+                </div>
+            </div>
+        </div>
+        <div class="add-article-box">
+          <h2 class="add-article-box-title"><span>标题图片</span></h2>
+          <div class="add-article-box-content">
+            <input type="text" class="form-control" placeholder="点击按钮选择图片" id="pictureUpload" name="ori_img" autocomplete="off" value="{$data.ori_img}">
+          </div>
+          <div class="add-article-box-footer">
+            <button class="btn btn-default" type="button" ID="upImage">选择</button>
+          </div>
+        </div>
+          <input type="hidden" value="{$data.art_id}" name="art_id">
+
+        <div class="add-article-box-footer">
+          <button class="btn btn-primary" type="submit" name="submit">发布</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</section>
+{include file='public/info'/}
+{include file='public/static'/}
+<script id="uploadEditor" type="text/plain" style="display:none;"></script>
+<script type="text/javascript">
+var editor = UE.getEditor('article-content');
+window.onresize=function(){
+    window.location.reload();
+}
+var _uploadEditor;
+$(function () {
+    //重新实例化一个编辑器，防止在上面的editor编辑器中显示上传的图片或者文件
+    _uploadEditor = UE.getEditor('uploadEditor');
+    _uploadEditor.ready(function () {
+        //设置编辑器不可用
+        //_uploadEditor.setDisabled();
+        //隐藏编辑器，因为不会用到这个编辑器实例，所以要隐藏
+        _uploadEditor.hide();
+        //侦听图片上传
+        _uploadEditor.addListener('beforeInsertImage', function (t, arg) {
+            //将地址赋值给相应的input,只去第一张图片的路径
+            $("#pictureUpload").attr("value", arg[0].src);
+            //图片预览
+            //$("#imgPreview").attr("src", arg[0].src);
+        })
+        //侦听文件上传，取上传文件列表中第一个上传的文件的路径
+        _uploadEditor.addListener('afterUpfile', function (t, arg) {
+            $("#fileUpload").attr("value", _uploadEditor.options.filePath + arg[0].url);
+        })
+    });
+});
+//弹出图片上传的对话框
+$('#upImage').click(function () {
+    var myImage = _uploadEditor.getDialog("insertimage");
+    myImage.open();
+});
+//弹出文件上传的对话框
+function upFiles() {
+    var myFiles = _uploadEditor.getDialog("attachment");
+    myFiles.open();
+}
+</script>
+</body>
+</html>

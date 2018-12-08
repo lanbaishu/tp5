@@ -1,0 +1,68 @@
+{include file='public/header'/}
+
+{include file='public/frame'/}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+      <form action="/Article/checkAll" method="post" >
+        <h1 class="page-header">操作</h1>
+        <ol class="breadcrumb">
+          <li><a href="{:url('article/insert')}">增加文章</a></li>
+        </ol>
+        <h1 class="page-header">管理 <span class="badge">{$count}</span></h1>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+
+                <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">标题</span></th>
+                <th><span class="glyphicon glyphicon-list"></span> <span class="visible-lg">栏目</span></th>
+                <th class="hidden-sm"><span class="glyphicon glyphicon-tag"></span> <span class="visible-lg">关键字</span></th>
+                <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">添加日期</span></th>
+                <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
+              </tr>
+            </thead>
+            <tbody>
+            {foreach name='page' item='v'}
+              <tr>
+                <td class="article-title">{$v.art_name}</td>
+                <td>{$v.cate_id}</td>
+                <td class="hidden-sm">{$v.keyword}</td>
+                <td>{$v.add_time}</td>
+                <td><a href="{:url('article/update')}?art_id={$v.art_id}">修改</a> <a rel="6" href="{:url('article/delete')}?art_id={$v.art_id}">删除</a></td>
+              </tr>
+              {/foreach}
+            </tbody>
+          </table>
+            <div style="text-align: right">{$page->render()}</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{include file='public/info'/}
+{include file='public/static'/}
+<script>
+//是否确认删除
+$(function(){   
+	$("#main table tbody tr td a").click(function(){
+		var name = $(this);
+		var id = name.attr("rel"); //对应id  
+		if (event.srcElement.outerText == "删除") 
+		{
+			if(window.confirm("此操作不可逆，是否确认？"))
+			{
+				$.ajax({
+					type: "POST",
+					url: "/Article/delete",
+					data: "id=" + id,
+					cache: false, //不缓存此页面   
+					success: function (data) {
+						window.location.reload();
+					}
+				});
+			};
+		};
+	});   
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<body>
+<header class="header-navigation" id="header">
+    <nav><div class="logo"><a href="{:url('index/index')}">蓝白个人博客</a></div>
+        <h2 id="mnavh"><span class="navicon"></span></h2>
+        <ul id="starlist">
+            <li><a href="{:url('index/index')}">网站首页</a></li>
+            <li><a href="{:url('leave/index')}">留言</a></li>
+            <li><a href="{:url('about/index')}">关于我</a></li>
+        </ul>
+    </nav>
+</header>
+<article>
+    <aside class="l_box">
+        <div class="about_me">
+            <h2>关于我</h2>
+            <ul>
+                <i><img src="__IMAGES__/4.jpg"></i>
+                <p><b>蓝白</b>，编程新人，初入行业，还请大家多多指教！</p>
+            </ul>
+        </div>
+
+        <div class="fenlei">
+            <h2>文章分类</h2>
+            <ul>
+                {foreach name='cate' item='v'}
+                <li><a href="{:url('category/index')}?cate_id={$v.cate_id}">{$v.cate_name}</a></li>
+                {/foreach}
+            </ul>
+        </div>
+        <div class="tuijian">
+            <h2>站长推荐</h2>
+            <ul>
+                {foreach name='art' item='v'}
+                <li><a href="{:url('article/index')}?art_id={$v.art_id}">{$v.art_name}</a></li>
+                {/foreach}
+            </ul>
+        </div>
+        <div class="links">
+            <h2>友情链接</h2>
+            <ul>
+                {foreach name='link' item='v'}
+                <a href="{$v.link_url}">{$v.link_name}</a>
+                {/foreach}
+            </ul>
+        </div>
+        <div class="guanzhu">
+            <h2>关注我 么么哒</h2>
+            <ul>
+                <img src="__IMAGES__/wx.jpg">
+            </ul>
+        </div>
+    </aside>

@@ -1,0 +1,36 @@
+{include file='public/header'}
+{include file='public/frame'/}
+  <main class="r_box">
+<div class="gbook">
+    {foreach name='leave' item='v'}
+      <div class="fb">
+        <ul>
+          <p class="fbtime"><span> {$v.add_time} </span> {$v.lev_name}</p>
+          <p class="fbinfo">{$v.lev_text}</p>
+        </ul>
+      </div>
+    {/foreach}
+      <div class="gbox">
+        <form action="{:url('leave/insert')}" method="post" name="form1" id="form1">
+          <p> <strong>说点什么吧</strong></p>
+          <p><span> 昵称</span>
+            <input name="lev_name" type="text" id="name">
+            *</p>
+          <p><span>邮箱</span>
+            <input name="lev_email" type="text" id="email">
+            *</p>
+          <p><span class="tnr">留言内容</span>
+            <textarea name="lev_text" cols="60" rows="12" id="lytext"></textarea>
+          </p>
+          <p>
+            <input type="submit" name="Submit3" value="留言">
+          </p>
+        </form>
+      </div>
+    </div>
+  </main>
+</article>
+{include file='public/footer'/}
+<a href="#" class="cd-top">Top</a>
+</body>
+</html>

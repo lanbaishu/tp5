@@ -1,0 +1,38 @@
+{include file='public/header'/}
+
+<body class="user-select">
+<div class="container">
+  <div class="siteIcon"><img src="__IMAGES__/icon/icon.png" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用异清轩博客管理系统" draggable="false" /></div>
+  <form action="{:url('index/login')}" method="post"  class="form-signin">
+    <h2 class="form-signin-heading">管理员登录</h2>
+    <label for="userName" class="sr-only">用户名</label>
+    <input type="text" id="userName" name="user_name" class="form-control" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10">
+    <label for="userPwd" class="sr-only">密码</label>
+    <input type="password" id="userPwd" name="user_pass" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
+    <input class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit" value="登录">
+  </form>
+  <div class="footer">
+    <p><a href="/Home/index.html" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">回到博客 →</a></p>
+  </div>
+</div>
+{include file='public/static'/}
+<script>
+$('[data-toggle="tooltip"]').tooltip();
+window.oncontextmenu = function(){
+	//return false;
+};
+$('.siteIcon img').click(function(){
+	window.location.reload();
+});
+$('#signinSubmit').click(function(){
+	if($('#userName').val() === ''){
+		$(this).text('用户名不能为空');
+	}else if($('#userPwd').val() === ''){
+		$(this).text('密码不能为空');
+	}else{
+		$(this).text('请稍后...');
+	}
+});
+</script>
+</body>
+</html>

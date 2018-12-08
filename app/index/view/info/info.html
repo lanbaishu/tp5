@@ -1,0 +1,78 @@
+{include file='public/header'/}
+{include file='public/frame'/}
+
+  <main>
+    <div class="infosbox">
+      <div class="newsview">
+        <h3 class="news_title">{$artinfo.art_name}</h3>
+        <div class="bloginfo">
+          <ul>
+            <li class="author">作者：<a href="/">自闭帝</a></li>
+            <li class="lmname">分类：<a href="/">{$artinfo.cate_id}</a></li>
+            <li class="timer">时间：{$artinfo.add_time}</li>
+          </ul>
+        </div>
+        <div class="tags" style="color: orange">{$artinfo.keyword}</div>
+        <div class="news_about"><strong>简介</strong>{$artinfo.art_dep}</div>
+        <div class="news_con">
+          {$artinfo.text}
+           </div>
+      </div>
+
+      <div class="nextinfo">
+        {neq name='lastinfo' value='null'}
+        <p>上一篇：<a href="{:url('article/index')}?art_id={$id-1}">{$lastinfo}</a></p>
+        {/neq}
+        {neq name='nextinfo' value='null'}
+        <p>下一篇：<a href="{:url('article/index')}?art_id={$id+1}">{$nextinfo}</a></p>
+        {/neq}
+      </div>
+      <div class="news_pl">
+        <h2>文章评论</h2>
+        <div class="gbko"> 
+          <script src="/e/pl/more/?classid=77&amp;id=106&amp;num=20"></script>
+          {foreach name='com' item='v'}
+          <div class="fb">
+            <ul>
+              <p class="fbtime"><span>{$v.add_time}</span>{$v.com_name}</p>
+              <p class="fbinfo">{$v.com_text}</p>
+            </ul>
+          </div>
+          {/foreach}
+          <script>
+		  function CheckPl(obj)
+		  {
+		  if(obj.saytext.value=="")
+		  {
+		  alert("你没什么话说吗");
+		  obj.saytext.focus();
+		  return false;
+		  }
+		  return true;
+		  }
+		  </script>
+          <form action="{:url('article/insert')}" method="post" name="saypl" id="saypl" onsubmit="return CheckPl(document.saypl)">
+            <div id="plpost">
+              <p class="saying" ><span style="color: orangered">共有{$count}条评论</span>来说两句吧</p>
+              <p class="yname"><span>昵称</span>
+                <input name="com_name" type="text" class="inputText" id="username" value="" size="16">
+              </p>
+              <p class="yzm"><span>邮箱</span>
+                <input name="com_email" type="email" class="inputText" size="16">
+              </p>
+              <textarea name="com_text" rows="6" id="saytext"></textarea>
+              <input name="art_id" type="hidden"  value="{$id}">
+              <input name="imageField" type="submit" value="提交">
+
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</article>
+{include file='public/footer'}
+<a href="#" class="cd-top">Top</a>
+</body>
+</html>

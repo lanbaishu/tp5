@@ -1,0 +1,14 @@
+{include file='public/header'/}
+{include file='public/frame'/}
+  <main class="r_box">
+    {foreach name='data' item='v'}
+    <li><i><a href="{:url('article/index')}?art_id={$v.art_id}"><img src="{$v.thumb_img}"></a></i>
+      <h3><a href="{:url('article/index')}?art_id={$v.art_id}">{$v.art_name}</a></h3>
+      <p>{$v.art_dep}</p>
+    </li>
+    {/foreach}
+  </main>
+</article>
+{include file='public/footer'/}
+</body>
+</html>

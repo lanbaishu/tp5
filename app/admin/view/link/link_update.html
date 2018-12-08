@@ -1,0 +1,35 @@
+{include file='public/header'/}
+{include file='public/frame'/}
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+  <div class="row">
+    <form action="{:url('link/alter')}" method="post" class="add-flink-form" autocomplete="off" draggable="false">
+      <div class="col-md-9">
+        <h1 class="page-header">修改友情链接</h1>
+        <div class="add-article-box">
+          <h2 class="add-article-box-title"><span>名称</span></h2>
+          <div class="add-article-box-content">
+            <input type="text" id="flink-name" name="link_name" class="form-control" value="{$link.link_name}" placeholder="在此处输入名称" required autofocus autocomplete="off">
+            <span class="prompt-text">链接名称</span> </div>
+        </div>
+        <div class="add-article-box">
+          <h2 class="add-article-box-title"><span>WEB地址</span></h2>
+          <div class="add-article-box-content">
+            <input type="text" id="flink-url" name="link_url" class="form-control" value="{$link.link_url}" placeholder="在此处输入URL地址" required autocomplete="off">
+            <span class="prompt-text">例子：<code>http://www.ylsat.com/</code>——不要忘了<code>http://</code></span> </div>
+          <input type="hidden" name="link_id" value="{$link.link_id}">
+          <div class="add-article-box-footer">
+            <button class="btn btn-primary" type="submit" name="submit">修改</button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</section>
+{include file='public/info'/}
+{include file='public/static'/}
+</body>
+</html>

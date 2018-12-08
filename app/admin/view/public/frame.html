@@ -1,0 +1,50 @@
+<body class="user-select">
+<section class="container-fluid">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a class="navbar-brand" href="/">YlsatCMS</a> </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$Think.session.user_info.user_name} <span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-left">
+                                <li><a title="查看或修改个人信息" data-toggle="modal" data-target="#seeUserInfo">个人信息</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{:url('index/logout')}" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+                        <li><a  href="{:url('index/index/index')}" target="_blank">回到博客</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="row">
+        <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="{:url('main/index')}">报告</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="{:url('article/index')}">文章</a></li>
+                <li><a href="{:url('leave/index')}">留言</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="{:url('category/index')}">栏目</a></li>
+                <li><a class="dropdown-toggle" id="otherMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">其他</a>
+                    <ul class="dropdown-menu" aria-labelledby="otherMenu">
+                        <li><a href="{:url('link/index')}">友情链接</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav nav-sidebar">
+
+                <li><a class="dropdown-toggle" id="settingMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">设置</a>
+                    <ul class="dropdown-menu" aria-labelledby="settingMenu">
+                        <li><a href="{:url('system/index')}">基本设置</a></li>
+                        <li><a href="{:url('about/index')}">关于我</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
